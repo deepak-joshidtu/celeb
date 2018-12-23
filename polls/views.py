@@ -5,6 +5,25 @@ from django.template import loader
 from .forms import NameForm
 from polls.models import Users,Userrequests
 from django.http import HttpResponse, HttpResponseRedirect
+from django.core.files.storage import FileSystemStorage
+
+
+
+def uploadv(request):
+    # if this is a POST request we need to process the form data
+    template = loader.get_template('polls/signup.html')
+    context = {   
+    }
+    if request.method == 'POST' and request.FILES['datafile']:
+        myfile = request.FILES['datafile']
+        fs = FileSystemStorage()
+        filename = fs.save(myfile.name, myfile)
+        uploaded_file_url = fs.url(filename)
+        print(uploaded_file_url)
+        return HttpResponse(template.render(context, request))
+    
+    return render(request, 'core/index3.html')
+           
 
 
 def submitrqst(request):
@@ -36,6 +55,12 @@ def createrqst(request):
 
 def profile(request):
     template = loader.get_template('polls/profile.html')
+    context = {   
+    }
+    return HttpResponse(template.render(context, request))
+
+def celebprofile(request):
+    template = loader.get_template('polls/celebprofile.html')  #read celeb profile and render pending requests, past uploads, total earnings,
     context = {   
     }
     return HttpResponse(template.render(context, request))
@@ -130,6 +155,20 @@ def browse(request):
 def userpage(request):
     
     template = loader.get_template('polls/userpage.html')
+    context = {   
+    }
+    return HttpResponse(template.render(context, request))
+
+def terms(request):
+    
+    template = loader.get_template('polls/terms.html')
+    context = {   
+    }
+    return HttpResponse(template.render(context, request))
+
+def faq(request):
+    
+    template = loader.get_template('polls/faq.html')
     context = {   
     }
     return HttpResponse(template.render(context, request))

@@ -14,4 +14,8 @@ urlpatterns = [
     path('supsub', views.supsub, name='supsub'),
     path('createrqst', views.createrqst, name='createrqst'),
     path('submitrqst', views.submitrqst, name='submitrqst'),
+    path('celebprofile', views.celebprofile, name='celebprofile'),
+    path('terms', views.terms, name='terms'),
+     path('faq', views.faq, name='faq'),
+    path('uploadv', views.uploadv, name='uploadv'),
 ]
